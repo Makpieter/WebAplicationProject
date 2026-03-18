@@ -1,4 +1,4 @@
-StudentsDataDTO.javapackage com.uep.wap.dto;
+package com.uep.wap.dto;
 
 import com.uep.wap.dto.StudentDTO;
 
