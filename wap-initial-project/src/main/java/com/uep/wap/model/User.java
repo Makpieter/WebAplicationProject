@@ -116,7 +116,13 @@ public class User {
     }
 
     public void getProfile(){
-
+        System.out.println("Username: "+ getUsername());
+        System.out.println("Biography: "+ getBio());
+        System.out.println("Reputation score: "+ getReputation());
+        System.out.println("Posted Questions:");
+        System.out.println("Answered Questions:");
+        System.out.println("Activity History:");
+        System.out.println("Bookmarked Questions:");
     }
     public void updateProfile(){
 
