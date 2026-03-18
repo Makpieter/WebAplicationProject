@@ -1,5 +1,7 @@
 package com.uep.wap.dto;
 
+import java.util.Date;
+
 public class UserDTO {
 
     public String username;
