@@ -1,19 +1,19 @@
 package com.uep.wap.controller;
 
-import com.uep.wap.dto.StudentDTO;
-import com.uep.wap.dto.StudentsDataDTO;
-import com.uep.wap.model.Student;
-import com.uep.wap.service.StudentsService;
+import com.uep.wap.dto.UserDTO;
+import com.uep.wap.dto.UsersDataDTO;
+import com.uep.wap.model.User;
+import com.uep.wap.service.UsersService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api")
-public class StudentController {
+public class UserController {
 
-    private final StudentsService studentsService;
+    private final UsersService usersService;
 
-    public StudentController(StudentsService studentsService) {
-        this.studentsService = studentsService;
+    public UserController(UsersService usersService) {
+        this.usersService = usersService;
     }
 
     @GetMapping(path = "/hello")
@@ -21,15 +21,15 @@ public class StudentController {
         return "Hello!";
     }
 
-    @GetMapping(path = "/students")
-    public Iterable<Student> getAllStudents(){
-        return studentsService.getAllStudents();
+    @GetMapping(path = "/users")
+    public Iterable<User> getAllUsers(){
+        return usersService.getAllUsers();
     }
 
-    @PostMapping(path = "/students")
-    public String addStudents(@RequestBody StudentDTO studentDTO){
-        studentsService.addStudent(studentDTO);
-        return "Students added!";
+    @PostMapping(path = "/users")
+    public String addUsers(@RequestBody UserDTO userDTO){
+        usersService.addUser(userDTO);
+        return "Users added!";
     }
 
 }
