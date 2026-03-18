@@ -1,5 +1,7 @@
 UsersDataDTO.javapackage com.uep.wap.dto;
 
+import com.uep.wap.dto.UserDTO;
+
 import java.util.List;
 
 public class UsersDataDTO {
