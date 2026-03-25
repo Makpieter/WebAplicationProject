@@ -4,36 +4,40 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="AdminActions")
+@Table(name="admin_actions")
 public class AdminAction {
+
     @Id
-    @Column(name ="id")
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name ="actionType")
-    private Enum actionType;
-    @Column(name ="targetUser")
+
+    @Enumerated(EnumType.STRING)
+    @Column(name ="action_type")
+    private AdminActionType actionType;
+
+    @ManyToOne
+    @JoinColumn(name = "target_user_id")
     private User targetUser;
-    @Column(name ="targetSetting")
+
+    @Column(name ="target_setting")
     private String targetSetting;
-    @Column(name ="actionTakenBy")
+
+    @ManyToOne
+    @JoinColumn(name = "admin_id")
     private User actionTakenBy;
-    @Column(name ="createdAt")
+
+    @Column(name ="created_at")
     private Date createdAt;
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Enum getActionType() {
+    public AdminActionType getActionType() {
         return actionType;
     }
 
-    public void setActionType(Enum actionType) {
+    public void setActionType(AdminActionType actionType) {
         this.actionType = actionType;
     }
 
@@ -69,9 +73,5 @@ public class AdminAction {
         this.createdAt = createdAt;
     }
 
-    public AdminAction(){
-
-    }
+    public AdminAction() {}
 }
-
-
