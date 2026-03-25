@@ -1,4 +1,4 @@
-AdminActionpackage com.uep.wap.repository;
+package com.uep.wap.repository;
 
 import com.uep.wap.model.Answer;
 import org.springframework.data.repository.CrudRepository;
