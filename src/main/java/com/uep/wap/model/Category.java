@@ -1,4 +1,4 @@
-Comment.javapackage com.uep.wap.model;
+package com.uep.wap.model;
 
 import javax.persistence.*;
 import java.util.Date;
