@@ -1,5 +1,6 @@
 package com.uep.wap.controller;
 
+import com.uep.wap.dto.ModeratorActionDTO;
 import com.uep.wap.model.ModeratorAction;
 import com.uep.wap.service.ModeratorActionsService;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ModeratorActionController {
     }
 
     @PostMapping(path = "/moderator-actions")
-    public String addModeratorAction(@RequestBody ModeratorAction actionDTO) {
+    public String addModeratorAction(@RequestBody ModeratorActionDTO actionDTO) {
         moderatorActionsService.addModeratorAction(actionDTO);
         return "Moderator action added!";
     }

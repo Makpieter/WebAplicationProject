@@ -39,14 +39,14 @@ public class CommentsService {
         comment.setUpdatedAt(new Date());
 
         // RELATION (ważne!)
-        if (commentDTO.getQuestionId() != null) {
-            Question question = questionRepository.findById(commentDTO.getQuestionId())
+        if (commentDTO.getTargetQuestionId() != null) {
+            Question question = questionRepository.findById(commentDTO.getTargetQuestionId())
                     .orElseThrow(() -> new RuntimeException("Question not found"));
             comment.setTargetQuestion(question);
         }
 
-        if (commentDTO.getAnswerId() != null) {
-            Answer answer = answerRepository.findById(commentDTO.getAnswerId())
+        if (commentDTO.getTargetAnswerId() != null) {
+            Answer answer = answerRepository.findById(commentDTO.getTargetAnswerId())
                     .orElseThrow(() -> new RuntimeException("Answer not found"));
             comment.setTargetAnswer(answer);
         }

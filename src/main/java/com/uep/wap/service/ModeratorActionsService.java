@@ -1,5 +1,9 @@
 package com.uep.wap.service;
 
+import com.uep.wap.dto.ModeratorActionDTO;
+import com.uep.wap.dto.ModeratorActionType;
+import com.uep.wap.model.Answer;
+import com.uep.wap.model.Question;
 import com.uep.wap.model.ModeratorAction;
 import com.uep.wap.repository.ModeratorActionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +15,24 @@ public class ModeratorActionsService {
     @Autowired
     private ModeratorActionRepository moderatorActionRepository;
 
-    public void addModeratorAction(ModeratorAction actionDTO) {
+    public void addModeratorAction(ModeratorActionDTO dto) {
         ModeratorAction action = new ModeratorAction();
-        action.setId(actionDTO.getId());
-        action.setDescription(actionDTO.getDescription());
-        action.setActionType(actionDTO.getActionType());
-        action.setTargetQuestion(actionDTO.getTargetQuestion());
-        action.setTargetAnswer(actionDTO.getTargetAnswer());
-        action.setCreatedAt(actionDTO.getCreatedAt());
+        action.setDescription(dto.getDescription());
+        action.setActionType(ModeratorActionType.valueOf(dto.getActionType()));
+
+        if (dto.getTargetQuestionId() != null) {
+            Question question = questionRepository.findById(dto.getTargetQuestionId())
+                    .orElseThrow(() -> new RuntimeException("Question not found"));
+            action.setTargetQuestion(question);
+        }
+
+        if (dto.getTargetAnswerId() != null) {
+            Answer answer = answerRepository.findById(dto.getTargetAnswerId())
+                    .orElseThrow(() -> new RuntimeException("Answer not found"));
+            action.setTargetAnswer(answer);
+        }
+
+        action.setCreatedAt(dto.getCreatedAt());
         moderatorActionRepository.save(action);
         System.out.println("Moderator action added!");
     }

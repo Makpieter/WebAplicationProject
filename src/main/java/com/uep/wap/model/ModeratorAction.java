@@ -1,5 +1,7 @@
 package com.uep.wap.model;
 
+import com.uep.wap.dto.ModeratorActionType;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,12 +10,13 @@ import java.util.Date;
 public class ModeratorAction {
     @Id
     @Column(name ="id")
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name ="description")
     private String description;
-    @Column(Enum ="actionType")
-    private Enum actionType;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "actionType")
+    private ModeratorActionType actionType;
     @Column(name ="targetQuestion")
     private Question targetQuestion;
     @Column(name ="targetAnswer")
@@ -72,6 +75,14 @@ public class ModeratorAction {
     public ModeratorAction(){
 
     }
+
+    @ManyToOne
+    @JoinColumn(name = "targetQuestion")
+    private Question targetQuestion;
+
+    @ManyToOne
+    @JoinColumn(name = "targetAnswer")
+    private Answer targetAnswer;
 }
 
 

@@ -8,7 +8,7 @@ import java.util.Date;
 public class Comment {
     @Id
     @Column(name ="id")
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name ="content")
     private String content;
@@ -82,6 +82,17 @@ public class Comment {
     public Comment(){
 
     }
+    @ManyToOne
+    @JoinColumn(name = "author")
+    private User author;
+
+    @ManyToOne
+    @JoinColumn(name = "targetQuestion")
+    private Question targetQuestion;
+
+    @ManyToOne
+    @JoinColumn(name = "targetAnswer")
+    private Answer targetAnswer;
 }
 
 

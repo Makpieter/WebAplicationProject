@@ -8,7 +8,7 @@ import java.util.Date;
 public class Category {
     @Id
     @Column(name ="id")
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name ="name")
     private String name;

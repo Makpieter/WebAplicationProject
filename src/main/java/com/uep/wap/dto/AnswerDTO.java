@@ -22,11 +22,7 @@ public class AnswerDTO {
         this.authorId = authorId;
     }
 
-    public Boolean getAccepted() {
-        return isAccepted;
-    }
+    public Boolean getIsAccepted() { return isAccepted; }
 
-    public void setAccepted(Boolean accepted) {
-        isAccepted = accepted;
-    }
+    public void setIsAccepted(Boolean isAccepted) { this.isAccepted = isAccepted; }
 }

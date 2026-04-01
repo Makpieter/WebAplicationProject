@@ -1,5 +1,7 @@
 package com.uep.wap.model;
 
+import com.uep.wap.dto.AdminActionType;
+
 import javax.persistence.*;
 import java.util.Date;
 

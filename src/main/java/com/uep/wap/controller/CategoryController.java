@@ -1,5 +1,6 @@
 package com.uep.wap.controller;
 
+import com.uep.wap.dto.CategoryDTO;
 import com.uep.wap.model.Category;
 import com.uep.wap.service.CategoriesService;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class CategoryController {
     }
 
     @PostMapping(path = "/categories")
-    public String addCategory(@RequestBody Category categoryDTO) {
+    public String addCategory(@RequestBody CategoryDTO categoryDTO) {
         categoriesService.addCategory(categoryDTO);
         return "Category added!";
     }

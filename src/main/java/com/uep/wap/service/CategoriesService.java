@@ -1,5 +1,6 @@
 package com.uep.wap.service;
 
+import com.uep.wap.dto.CategoryDTO;
 import com.uep.wap.model.Category;
 import com.uep.wap.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,9 @@ public class CategoriesService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public void addCategory(Category categoryDTO) {
+    public void addCategory(CategoryDTO categoryDTO) {
         Category category = new Category();
-        category.setId(categoryDTO.getId());
+        // category.setId(categoryDTO.getId()); // optional if auto-generated
         category.setName(categoryDTO.getName());
         category.setDescription(categoryDTO.getDescription());
         categoryRepository.save(category);

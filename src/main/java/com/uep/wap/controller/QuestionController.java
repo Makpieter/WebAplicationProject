@@ -1,6 +1,7 @@
 package com.uep.wap.controller;
 
 import com.uep.wap.model.Question;
+import com.uep.wap.dto.QuestionDTO;
 import com.uep.wap.service.QuestionsService;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class QuestionController {
     }
 
     @PostMapping(path = "/questions")
-    public String addQuestion(@RequestBody Question questionDTO) {
+    public String addQuestion(@RequestBody QuestionDTO questionDTO) {
         questionsService.addQuestion(questionDTO);
         return "Question added!";
     }

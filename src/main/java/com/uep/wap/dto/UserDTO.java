@@ -27,7 +27,7 @@ public class UserDTO {
         return password;
     }
 
-    public void setPassword(String name) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

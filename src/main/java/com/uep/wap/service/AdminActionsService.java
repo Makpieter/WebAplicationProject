@@ -35,6 +35,10 @@ public class AdminActionsService {
         User admin = userRepository.findById(dto.getAdminId())
                 .orElseThrow(() -> new RuntimeException("Admin not found"));
 
+        if (dto.getActionType() == null) {
+            throw new RuntimeException("Action type cannot be null");
+        }
+
         action.setActionTakenBy(admin);
 
         action.setCreatedAt(new Date());

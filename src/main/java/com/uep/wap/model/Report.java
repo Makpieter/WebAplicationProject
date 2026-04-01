@@ -8,7 +8,7 @@ import java.util.Date;
 public class Report {
     @Id
     @Column(name ="id")
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name ="reportedBy")
     private User reportedBy;
