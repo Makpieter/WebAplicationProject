@@ -1,9 +1,13 @@
 package com.uep.wap.model;
 
+import com.uep.wap.dto.QuestionStatus;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
+@Entity
+@Table(name="questions")
 @Entity
 @Table(name="questions")
 public class Question {
@@ -11,21 +15,32 @@ public class Question {
     @Column(name ="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(name ="title")
     private String title;
+
     @Column(name ="description")
     private String description;
+
     @Column(name ="tags")
-    private Set tags;
-    @Column(name ="author")
+    private Set<Tag> tags;
+
+    @ManyToOne
+    @JoinColumn(name ="author")
     private User author;
+
     @Column(name ="createdAt")
     private Date createdAt;
+
     @Column(name ="updatedAt")
     private Date updatedAt;
+
+    @Enumerated(EnumType.STRING)
     @Column(name ="status")
-    private Enum status;
-    @Column(name ="acceptedAnswer")
+    private QuestionStatus status;
+
+    @OneToOne
+    @JoinColumn(name ="acceptedAnswer")
     private Answer acceptedAnswer;
 
     public long getId() {
@@ -84,11 +99,11 @@ public class Question {
         this.updatedAt = updatedAt;
     }
 
-    public Enum getStatus() {
+    public QuestionStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Enum status) {
+    public void setStatus(QuestionStatus status) {
         this.status = status;
     }
 

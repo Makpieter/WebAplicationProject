@@ -1,12 +1,21 @@
 package com.uep.wap.service;
 
+import com.uep.wap.dto.QuestionDTO;
+import com.uep.wap.dto.QuestionStatus;
+import com.uep.wap.model.Answer;
 import com.uep.wap.model.Question;
+import com.uep.wap.model.Tag;
+import com.uep.wap.model.User;
 import com.uep.wap.repository.AnswerRepository;
 import com.uep.wap.repository.QuestionRepository;
 import com.uep.wap.repository.TagRepository;
 import com.uep.wap.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class QuestionsService {
@@ -55,7 +64,7 @@ public class QuestionsService {
 
         // Status conversion (example: simple string → Enum)
         if (dto.getStatus() != null) {
-            question.setStatus(Enum.valueOf(QuestionStatus.class, dto.getStatus()));
+            question.setStatus(dto.getStatus());
         }
 
         questionRepository.save(question);

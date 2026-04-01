@@ -12,7 +12,7 @@ public class QuestionDTO {
     private Long authorId;
     private Date createdAt;
     private Date updatedAt;
-    private String status;
+    private QuestionStatus status;
     private Long acceptedAnswerId;
 
     public Long getId() {
@@ -71,13 +71,8 @@ public class QuestionDTO {
         this.updatedAt = updatedAt;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public QuestionStatus getStatus() { return status; }
+    public void setStatus(QuestionStatus status) { this.status = status; }
 
     public Long getAcceptedAnswerId() {
         return acceptedAnswerId;
