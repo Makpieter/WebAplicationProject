@@ -14,7 +14,6 @@ public class TagsService {
 
     public void addTag(TagDTO tagDTO) {
         Tag tag = new Tag();
-        tag.setId(tagDTO.getId());
         tag.setName(tagDTO.getName());
         tag.setDescription(tagDTO.getDescription());
         tagRepository.save(tag);

@@ -1,5 +1,7 @@
 package com.uep.wap.model;
 
+import com.uep.wap.dto.ReportStatus;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -20,8 +22,9 @@ public class Report {
     private Comment targetComment;
     @Column(name ="reason")
     private String reason;
-    @Column(name ="status")
-    private Enum status;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private ReportStatus status;
 
     public long getId() {
         return id;
@@ -82,6 +85,22 @@ public class Report {
     public Report(){
 
     }
+
+    @ManyToOne
+    @JoinColumn(name = "reportedBy")
+    private User reportedBy;
+
+    @ManyToOne
+    @JoinColumn(name = "targetQuestion")
+    private Question targetQuestion;
+
+    @ManyToOne
+    @JoinColumn(name = "targetAnswer")
+    private Answer targetAnswer;
+
+    @ManyToOne
+    @JoinColumn(name = "targetComment")
+    private Comment targetComment;
 }
 
 
