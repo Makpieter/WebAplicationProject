@@ -12,15 +12,18 @@ public class Comment {
     private long id;
     @Column(name ="content")
     private String content;
-    @Column(name ="author")
+    @ManyToOne
+    @JoinColumn(name = "author")
     private User author;
     @Column(name ="createdAt")
     private Date createdAt;
     @Column(name ="updatedAt")
     private Date updatedAt;
-    @Column(name ="targetQuestion")
+    @ManyToOne
+    @JoinColumn(name = "targetQuestion")
     private Question targetQuestion;
-    @Column(name ="targetAnswer")
+    @ManyToOne
+    @JoinColumn(name = "targetAnswer")
     private Answer targetAnswer;
 
     public long getId() {
@@ -82,17 +85,6 @@ public class Comment {
     public Comment(){
 
     }
-    @ManyToOne
-    @JoinColumn(name = "author")
-    private User author;
-
-    @ManyToOne
-    @JoinColumn(name = "targetQuestion")
-    private Question targetQuestion;
-
-    @ManyToOne
-    @JoinColumn(name = "targetAnswer")
-    private Answer targetAnswer;
 }
 
 

@@ -17,9 +17,11 @@ public class ModeratorAction {
     @Enumerated(EnumType.STRING)
     @Column(name = "actionType")
     private ModeratorActionType actionType;
-    @Column(name ="targetQuestion")
+    @ManyToOne
+    @JoinColumn(name = "targetQuestion")
     private Question targetQuestion;
-    @Column(name ="targetAnswer")
+    @ManyToOne
+    @JoinColumn(name = "targetAnswer")
     private Answer targetAnswer;
     @Column(name ="createdAt")
     private Date createdAt;
@@ -40,11 +42,11 @@ public class ModeratorAction {
         this.description = description;
     }
 
-    public Enum getActionType() {
+    public ModeratorActionType getActionType() {
         return actionType;
     }
 
-    public void setActionType(Enum actionType) {
+    public void setActionType(ModeratorActionType actionType) {
         this.actionType = actionType;
     }
 
@@ -75,14 +77,6 @@ public class ModeratorAction {
     public ModeratorAction(){
 
     }
-
-    @ManyToOne
-    @JoinColumn(name = "targetQuestion")
-    private Question targetQuestion;
-
-    @ManyToOne
-    @JoinColumn(name = "targetAnswer")
-    private Answer targetAnswer;
 }
 
 

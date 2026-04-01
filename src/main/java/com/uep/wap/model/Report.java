@@ -12,13 +12,17 @@ public class Report {
     @Column(name ="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name ="reportedBy")
+    @ManyToOne
+    @JoinColumn(name = "reportedBy")
     private User reportedBy;
-    @Column(name ="targetQuestion")
+    @ManyToOne
+    @JoinColumn(name = "targetQuestion")
     private Question targetQuestion;
-    @Column(name ="targetAnswer")
+    @ManyToOne
+    @JoinColumn(name = "targetAnswer")
     private Answer targetAnswer;
-    @Column(name ="targetComment")
+    @ManyToOne
+    @JoinColumn(name = "targetComment")
     private Comment targetComment;
     @Column(name ="reason")
     private String reason;
@@ -74,33 +78,17 @@ public class Report {
         this.reason = reason;
     }
 
-    public Enum getStatus() {
+    public ReportStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Enum status) {
+    public void setStatus(ReportStatus status) {
         this.status = status;
     }
 
     public Report(){
 
     }
-
-    @ManyToOne
-    @JoinColumn(name = "reportedBy")
-    private User reportedBy;
-
-    @ManyToOne
-    @JoinColumn(name = "targetQuestion")
-    private Question targetQuestion;
-
-    @ManyToOne
-    @JoinColumn(name = "targetAnswer")
-    private Answer targetAnswer;
-
-    @ManyToOne
-    @JoinColumn(name = "targetComment")
-    private Comment targetComment;
 }
 
 
