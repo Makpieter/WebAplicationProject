@@ -8,8 +8,6 @@ import java.util.Set;
 
 @Entity
 @Table(name="questions")
-@Entity
-@Table(name="questions")
 public class Question {
     @Id
     @Column(name ="id")
