@@ -1,27 +1,27 @@
 package com.uep.wap.controller;
 
 import com.uep.wap.model.Report;
-import com.uep.wap.service.ReportService;
+import com.uep.wap.service.ReportsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api")
 public class ReportController {
 
-    private final ReportService reportService;
+    private final ReportsService reportsService;
 
-    public ReportController(ReportService reportService) {
-        this.reportService = reportService;
+    public ReportController(ReportsService reportsService) {
+        this.reportsService = reportsService;
     }
 
     @GetMapping(path = "/reports")
     public Iterable<Report> getAllReports() {
-        return reportService.getAllReports();
+        return reportsService.getAllReports();
     }
 
     @PostMapping(path = "/reports")
     public String addReport(@RequestBody Report reportDTO) {
-        reportService.addReport(reportDTO);
+        reportsService.addReport(reportDTO);
         return "Report added!";
     }
 }

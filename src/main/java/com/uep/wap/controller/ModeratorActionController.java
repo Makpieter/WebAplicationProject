@@ -1,27 +1,27 @@
 package com.uep.wap.controller;
 
 import com.uep.wap.model.ModeratorAction;
-import com.uep.wap.service.ModeratorActionService;
+import com.uep.wap.service.ModeratorActionsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api")
 public class ModeratorActionController {
 
-    private final ModeratorActionService moderatorActionService;
+    private final ModeratorActionsService moderatorActionsService;
 
-    public ModeratorActionController(ModeratorActionService moderatorActionService) {
-        this.moderatorActionService = moderatorActionService;
+    public ModeratorActionController(ModeratorActionsService moderatorActionsService) {
+        this.moderatorActionsService = moderatorActionsService;
     }
 
     @GetMapping(path = "/moderator-actions")
     public Iterable<ModeratorAction> getAllModeratorActions() {
-        return moderatorActionService.getAllModeratorActions();
+        return moderatorActionsService.getAllModeratorActions();
     }
 
     @PostMapping(path = "/moderator-actions")
     public String addModeratorAction(@RequestBody ModeratorAction actionDTO) {
-        moderatorActionService.addModeratorAction(actionDTO);
+        moderatorActionsService.addModeratorAction(actionDTO);
         return "Moderator action added!";
     }
 }
