@@ -1,5 +1,8 @@
 package com.uep.wap.model;
 
+import com.uep.wap.dto.UserRole;
+import com.uep.wap.dto.UserStatus;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,15 +18,16 @@ public class User {
     @Column(name ="email")
     private String email;
     @Column(name ="password")
-    private String password;
-    @Column(name ="role")
-    private Enum role;
+    private String password;@Enumerated(EnumType.STRING)
+    @Column(name="role")
+    private UserRole role;
     @Column(name ="reputation")
     private Integer reputation;
     @Column(name ="bio")
     private String bio;
-    @Column(name ="status")
-    private Enum status;
+    @Enumerated(EnumType.STRING)
+    @Column(name="status")
+    private UserStatus status;
     @Column(name ="createdAt")
     private Date createdAt;
     @Column(name ="updatedAt")
@@ -61,13 +65,8 @@ public class User {
         this.password = password;
     }
 
-    public Enum getRole() {
-        return role;
-    }
-
-    public void setRole(Enum role) {
-        this.role = role;
-    }
+    public UserRole getRole() { return role; }
+    public void setRole(UserRole role) { this.role = role; }
 
     public Integer getReputation() {
         return reputation;
@@ -85,13 +84,8 @@ public class User {
         this.bio = bio;
     }
 
-    public Enum getStatus() {
-        return status;
-    }
-
-    public void setStatus(Enum status) {
-        this.status = status;
-    }
+    public UserStatus getStatus() { return status; }
+    public void setStatus(UserStatus status) { this.status = status; }
 
     public Date getCreatedAt() {
         return createdAt;

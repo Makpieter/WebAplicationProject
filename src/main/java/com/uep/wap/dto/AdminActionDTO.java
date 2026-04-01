@@ -1,7 +1,5 @@
 package com.uep.wap.dto;
 
-import com.uep.wap.model.AdminActionType;
-
 public class AdminActionDTO {
 
     private AdminActionType actionType;

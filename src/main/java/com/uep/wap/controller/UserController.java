@@ -23,7 +23,7 @@ public class UserController {
 
     @PostMapping(path = "/users")
     public String addUsers(@RequestBody UserDTO usersDTO){
-        usersService.addUser(userDTO);
+        usersService.addUser(usersDTO);
         return "Users added!";
     }
 

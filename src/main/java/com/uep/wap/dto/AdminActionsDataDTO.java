@@ -2,15 +2,15 @@ package com.uep.wap.dto;
 
 import java.util.List;
 
-public class ModeratorActionsDataDTO {
+public class AdminActionsDataDTO {
 
-    private List<ModeratorActionDTO> actions;
+    private List<AdminActionDTO> actions;
 
-    public List<ModeratorActionDTO> getActions() {
+    public List<AdminActionDTO> getActions() {
         return actions;
     }
 
-    public void setActions(List<ModeratorActionDTO> actions) {
+    public void setActions(List<AdminActionDTO> actions) {
         this.actions = actions;
     }
 }
