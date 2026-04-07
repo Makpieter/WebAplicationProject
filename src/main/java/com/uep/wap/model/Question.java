@@ -7,39 +7,48 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name="questions")
+@Table(name = "questions")
 public class Question {
+
     @Id
-    @Column(name ="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
-    @Column(name ="title")
+    @Column(name = "title")
     private String title;
 
-    @Column(name ="description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name ="tags")
+    @ManyToMany
+    @JoinTable(
+            name = "question_tags",
+            joinColumns = @JoinColumn(name = "question_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
     private Set<Tag> tags;
 
     @ManyToOne
-    @JoinColumn(name ="author")
+    @JoinColumn(name = "author_id")
     private User author;
 
-    @Column(name ="createdAt")
+    @Column(name = "created_at")
     private Date createdAt;
 
-    @Column(name ="updatedAt")
+    @Column(name = "updated_at")
     private Date updatedAt;
 
     @Enumerated(EnumType.STRING)
-    @Column(name ="status")
+    @Column(name = "status")
     private QuestionStatus status;
 
     @OneToOne
-    @JoinColumn(name ="acceptedAnswer")
+    @JoinColumn(name = "accepted_answer_id")
     private Answer acceptedAnswer;
+
+    public Question() {
+    }
 
     public long getId() {
         return id;
@@ -65,11 +74,11 @@ public class Question {
         this.description = description;
     }
 
-    public Set getTags() {
+    public Set<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(Set tags) {
+    public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
 
@@ -112,10 +121,4 @@ public class Question {
     public void setAcceptedAnswer(Answer acceptedAnswer) {
         this.acceptedAnswer = acceptedAnswer;
     }
-
-    public Question(){
-
-    }
 }
-
-
