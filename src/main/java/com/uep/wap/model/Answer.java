@@ -12,7 +12,8 @@ public class Answer {
     private long id;
     @Column(name ="description")
     private String description;
-    @Column(name ="author")
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     private User author;
     @Column(name ="createdAt")
     private Date createdAt;

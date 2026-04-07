@@ -12,9 +12,11 @@ public class Bookmark {
     private long id;
     @Column(name ="description")
     private String description;
-    @Column(name ="user")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
-    @Column(name ="question")
+    @ManyToOne
+    @JoinColumn(name = "question_id")
     private Question question;
     @Column(name ="createdAt")
     private Date createdAt;
