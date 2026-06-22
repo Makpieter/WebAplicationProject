@@ -32,19 +32,21 @@ public class QuestionsService {
     @Autowired
     private AnswerRepository answerRepository;
 
-    public void addQuestion(QuestionDTO dto) {
+    /** Create a new question and return the saved entity (with generated id). */
+    public Question addQuestion(QuestionDTO dto) {
         Question question = new Question();
         question.setTitle(dto.getTitle());
         question.setDescription(dto.getDescription());
         question.setCreatedAt(dto.getCreatedAt() != null ? dto.getCreatedAt() : new Date());
         question.setUpdatedAt(dto.getUpdatedAt() != null ? dto.getUpdatedAt() : new Date());
+        question.setStatus(dto.getStatus() != null ? dto.getStatus() : QuestionStatus.OPEN);
 
         // Author
         User author = userRepository.findById(dto.getAuthorId())
-                .orElseThrow(() -> new RuntimeException("Author not found"));
+                .orElseThrow(() -> new RuntimeException("Author not found: " + dto.getAuthorId()));
         question.setAuthor(author);
 
-        // Tags
+        // Tags (zero or more)
         Set<Tag> tags = new HashSet<>();
         if (dto.getTagIds() != null) {
             for (Long tagId : dto.getTagIds()) {
@@ -55,22 +57,50 @@ public class QuestionsService {
         }
         question.setTags(tags);
 
-        // Accepted Answer (optional)
+        // Accepted answer (optional, typically null on creation)
         if (dto.getAcceptedAnswerId() != null) {
             Answer accepted = answerRepository.findById(dto.getAcceptedAnswerId())
                     .orElseThrow(() -> new RuntimeException("Accepted answer not found"));
             question.setAcceptedAnswer(accepted);
         }
 
-        // Status conversion (example: simple string → Enum)
+        return questionRepository.save(question);
+    }
+
+    /** Update an existing question by id and return the saved entity. */
+    public Question updateQuestion(Long id, QuestionDTO dto) {
+        Question question = questionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Question not found: " + id));
+
+        question.setTitle(dto.getTitle());
+        question.setDescription(dto.getDescription());
+        question.setUpdatedAt(new Date());
+
         if (dto.getStatus() != null) {
             question.setStatus(dto.getStatus());
         }
 
-        questionRepository.save(question);
-        System.out.println("Question added!");
+        // Replace tag set with the new selection
+        Set<Tag> tags = new HashSet<>();
+        if (dto.getTagIds() != null) {
+            for (Long tagId : dto.getTagIds()) {
+                Tag tag = tagRepository.findById(tagId)
+                        .orElseThrow(() -> new RuntimeException("Tag not found: " + tagId));
+                tags.add(tag);
+            }
+        }
+        question.setTags(tags);
+
+        return questionRepository.save(question);
     }
 
+    /** Fetch a single question by id. */
+    public Question getQuestionById(Long id) {
+        return questionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Question not found: " + id));
+    }
+
+    /** Fetch all questions. */
     public Iterable<Question> getAllQuestions() {
         return questionRepository.findAll();
     }
